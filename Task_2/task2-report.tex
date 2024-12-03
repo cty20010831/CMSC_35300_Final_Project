@@ -9,7 +9,16 @@
 \begin{document}
     \title{Overview of Task 2}
     \maketitle
-    In this task, we aim to reconstruct the lower half of each image based on the upper half. Specifically, the goal is to predict the missing lower half leveraging information from the upper half, allowing the model to “complete” the image of each sign language digit. To achieve this, we will experiment with various approaches, including ridge regression, principal component regression, and kernel ridge regression. Furthermore, we will evaluate and compare model performance using metrics such as mean squared error (MSE), Structural Similarity Index Measure (SSIM), and Peak Signal-to-Noise Ratio (PSNR). Finally, we will explain the differences in model performance and suggest potential ways to improve performance. 
+    In this task, we reconstructed the lower half of each image based on
+    the upper half. Specifically, the goal was to predict the missing lower half lever-
+    aging information from the upper half, allowing the model to “complete” the
+    image of each sign language digit. To achieve this, we experimented with
+    various approaches, including ridge regression, principal component regression,
+    and kernel ridge regression. Furthermore, we evaluated and compared model
+    performance using metrics such as mean squared error (MSE), Structural Simi-
+    larity Index Measure (SSIM), and Peak Signal-to-Noise Ratio (PSNR). Finally,
+    we explained the differences in model performance and suggested potential ways
+    to improve performance.
 
     \section{Data Preprocessing}
     The analysis began with a data set of images, stored as a NumPy array with shape $(2062, 64, 64)$ (i.e., 2062 images with each image having $64 \times 64$ pixels). First, the original 3D array of shape $(2062, 64, 64)$ was reshaped into a 2D array with shape: $(n, 64 \times 64)$, where each row represents one flattened image. Next, we split the data into 80\% training and 20\% testing sets, and this splitting was performed before separating the upper and lower halves to prevent data leakage. Then, each flattened image is divided at the midpoint for upper-lower-hale separation. The upper half of the images was used as input features, while the lower half of the images was used as target variables.
