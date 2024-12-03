@@ -21,4 +21,4 @@ and kernel ridge regression. Furthermore, we evaluated and compared model
 performance using metrics such as mean squared error (MSE), Structural Simi-
 larity Index Measure (SSIM), and Peak Signal-to-Noise Ratio (PSNR). Finally,
 we explained the differences in model performance and suggested potential ways
-to improve performance
+to improve performance.
