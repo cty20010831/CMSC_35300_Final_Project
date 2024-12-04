@@ -102,6 +102,13 @@ Despite the dominance of deep learning approaches in real-world image understand
 In this project, we conducted our experiments in the Sign Language Digits Dataset [cite], an open dataset of a collection of sign language digit images. This dataset was designed for recognizing hand signs corresponding to digits 0-9 in American Sign Language. 
 
 The raw dataset contains 2180 photos of hand signs with each one 100x100 pixels, which were classified into 10 classes representing digits 0-9. Before running experiments, all raw images undergo several preprocessing steps, including image resizing to a fixed dimension (specifically, 64x64 pixels), label assignment via one-hot encoding, and normalization of pixel values to enhance contrast in grayscale data. This processing results in 2180 samples, each of which has a 64x64 image feature matrix, and a corresponding numeric ground truth label, standing for 10 different digit signs from 0-9.
+
+
+\section{Sign Language Digits Prediction}
+We used three traditional machine learning algorithms, k-nearest neighbors (KNN), random forest, and support vector machines (SVM), to predict the sign language digits (0-9) from the hand-pose images. First, we split the dataset (i.e., 2062 images and their ground truth labels) into training and testing datasets. We withheld 20\% of the images as testing data. Then, we trained the classification models with KNN, random forest, and SVM. For KNN, the number of neighbors was set to three, and the average score from 10-fold cross-validation was 0.61 with a standard deviation of 0.03. For random forest, the average score from 10-fold cross-validation was 0.39 with a standard deviation of 0.04. For SVM classification, the average score from 10-fold cross-validation was 0.83 with a standard deviation of 0.03.
+Finally, we test the performance (i.e., prediction accuracy) of our prediction models with the testing data. The accuracy of the KNN model was 0.946; the accuracy of the random forest model was 0.94, and the accuracy of the SVM model was 0.847.
+
+
 % Please read the instructions below carefully and follow them faithfully.
 
 
