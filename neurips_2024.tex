@@ -106,9 +106,34 @@ The raw dataset contains 2062 photos of hand signs with each one 100x100 pixels,
 
 
 \section{Sign Language Digits Prediction}
-We used three traditional machine learning algorithms, k-nearest neighbors (KNN), random forest, and support vector machines (SVM), to predict the sign language digits (0-9) from the hand-pose images. First, we split the dataset (i.e., 2062 images and their ground truth labels) into training and testing datasets. We withheld 20\% of the images as testing data. Then, we trained the classification models with KNN, random forest, and SVM. For KNN, the number of neighbors was set to three, and the average score from 10-fold cross-validation was 0.61 with a standard deviation of 0.03. For random forest, the average score from 10-fold cross-validation was 0.39 with a standard deviation of 0.04. For SVM classification, the average score from 10-fold cross-validation was 0.83 with a standard deviation of 0.03.
+To predict the sign language digits (0-9) from hand-pose images, we used and compared three traditional machine learning classification algorithms: k-nearest neighbors (KNN), random forest, and support vector machines (SVM). We first split the dataset (i.e., 2062 images and their ground truth labels) into 80\% training and 20\% testing datasets. Then, we trained the classification models on the training data with KNN, random forest, and SVM, and used cross-validation to estimate the prediction accuracy of the fitted model and assess the stability of the parameters. For KNN, we first iterated the number of \textit{k} from 2 to 20, and determined the number of \textit{k} to be three, which as the highest cross validation score. Besides KNN, we used random forest and SVM for fitting the prediction model. Our goal is to compare these three models and select the one that has the highest prediction accuracy.
+
+
+To assess the quality of the fitting model, we calculated the average score of 10-fold cross-validations (CV). The cross-validation score of KNN (k = 3) was 0.61 with a standard deviation of 0.03. For random forest, the average score was 0.39 with a standard deviation of 0.04. For SVM classification, the average score was 0.83 with a standard deviation of 0.03.
 Finally, we test the performance (i.e., prediction accuracy) of our prediction models with the testing data. The accuracy of the KNN model was 0.946; the accuracy of the random forest model was 0.94, and the accuracy of the SVM model was 0.847.
-TODO: why cross validation SVM best, and why prediction SMV worst (e.g., overfitting)
+
+The result of the model fitting and prediction accuracy is presented in Table \ref{table:prediction_model_comparison}. While SVM has the highest cross-validation score (0.83), it has the worst prediection accuracy (0.847). We hypothesized that the contradiction is a result of overfitting. Through cross-validation, we might have found optimal parameters that fit the training data (i.e., the validation set), but it couldn't generalized to the test data.
+
+
+\begin{table}[h]
+    \centering
+    \caption{Performance Comparison of Different Classifiers}
+    \begin{tabular}{l
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=3]}
+    \toprule
+    {Method} & {CV (accuracy) } & {CV (std)} & {prediction accuracy} \\
+    \midrule
+    KNN & 0.61 & 0.03 & 0.946  \\
+    random forest & 0.39 & 0.04 & 0.94\\
+    SVM & 0.83 & 0.0.03 & 0.847 \\
+    \bottomrule
+    \end{tabular}
+\label{table:prediction_model_comparison}
+\end{table}
+
+
 
 \section{Sign Language Digits Completion}
 We utilized traditional regression-based methods to determine how well they can reconstruct the missing lower half of each image using information from the upper half. Specifically, each image is initially flattened into a 4096-dimensional vector ($64 \times 64$ pixels). The dataset is split into 80\% training and 20\% testing, ensuring the separation occurs before dividing each image into upper and lower halves to prevent data leakage. After splitting, the upper half of the images forms the input features ($X$), while the lower half serves as the target variables ($y$). This setup ensures that our models learn to predict the missing lower part of the image solely from the visible upper part.
